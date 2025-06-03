@@ -1,4 +1,4 @@
-import React from 'react';
+
 import logo from '../assets/collab-logo.png'
 import { Link } from 'react-router';
 import { IoIosSunny } from "react-icons/io";

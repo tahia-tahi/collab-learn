@@ -1,4 +1,3 @@
-import React from 'react';
 import ShowHidePassword from '../Components/ShowHidePassword';
 
 const SignUp = () => {
