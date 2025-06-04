@@ -1,12 +1,30 @@
+import { useContext } from 'react';
 import ShowHidePassword from '../Components/ShowHidePassword';
+import { AuthContext } from '../Provider/AuthContext';
 
 const SignUp = () => {
+
+    const {createUser} = useContext(AuthContext)
 
       const handleRegister = (e) =>{
         e.preventDefault()
 
         const form = e.target;
-        const formData = 
+        const formData = new FormData(form)
+
+        const name = formData.get('name')
+        const photo = formData.get('photo')
+
+        const {email, password, ...restFormData} = Object.fromEntries(formData.entries())
+
+        console.log(email);
+        createUser(email, password)
+        .then(result => {
+            const user = result.user
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 
       }
     return (
