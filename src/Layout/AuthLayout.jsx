@@ -1,12 +1,10 @@
-import React from 'react';
-import SignUp from '../Pages/SignUp';
-import Login from '../Pages/Login';
+
+import { Outlet } from 'react-router';
 
 const AuthLayout = () => {
     return (
         <div>
-            <Login></Login>
-            <SignUp></SignUp>
+           <Outlet></Outlet>
 
         </div>
     );
