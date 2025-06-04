@@ -8,9 +8,12 @@ const MainLayout = () => {
         <div>
 
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div className='my-20'>
+                <Outlet></Outlet>
+            </div>
+
             <Footer></Footer>
-            
+
         </div>
     );
 };

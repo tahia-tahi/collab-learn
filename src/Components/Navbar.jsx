@@ -4,20 +4,30 @@ import { IoIosSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
 import { useContext, useState } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
+import { toast } from 'react-toastify';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleLogOut = () =>{
+    logOut()
+    .then(()=>{
+        toast.success('Log Out Successful')
+    })
+    .catch((error)=>{
+        toast.error(error)
+    })
+  }
 
   return (
     <nav className="bg-base-100 shadow-md px-4 py-3 md:px-8">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
-        {/* Logo */}
         <div className="flex items-center space-x-2">
           <img src={logo} alt="Collab Logo" className="h-10 w-auto" />
         </div>
 
-        {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center space-x-6 font-medium text-secondary">
           <Link to="/">Home</Link>
           <Link to="/assignments">Assignments</Link>
@@ -26,7 +36,7 @@ const Navbar = () => {
               <Link to="/pending">Pending</Link>
               <Link to="/create">Create</Link>
               <Link to="/submitted">Submitted</Link>
-              <button className="btn btn-sm bg-primary text-white hover:bg-secondary">Log Out</button>
+              <button onClick={handleLogOut} className="btn btn-sm bg-primary text-white hover:bg-secondary">Log Out</button>
             </>
           )}
           {!user && (
@@ -39,8 +49,7 @@ const Navbar = () => {
 
         {/* Theme Toggle (Just UI - logic not added) */}
         <div className="hidden md:flex items-center space-x-3 text-secondary text-xl">
-          <IoIosSunny className="cursor-pointer" />
-          <FaMoon className="cursor-pointer" />
+        <ThemeToggle></ThemeToggle>
         </div>
 
         {/* Mobile Hamburger */}

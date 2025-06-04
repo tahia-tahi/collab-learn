@@ -63,7 +63,7 @@ const SignUp = () => {
 
         <div>
 
-            <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl mt-20">
+            <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl ">
                 <form onSubmit={handleRegister} className="card-body">
                     <h1 className="text-3xl text-center text-accent font-bold">Sign Up now!</h1>
                     <fieldset className="fieldset">
