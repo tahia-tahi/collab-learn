@@ -20,7 +20,7 @@ const AssignmentCard = ({ assignment }) => {
       <div className="flex justify-between items-center w-full pt-4">
         <button className="btn btn-outline btn-error btn-sm">Delete</button>
 
-        <Link to={`/assignments/${assignment._id}`} className="btn btn-primary btn-sm">
+        <Link to={`/details/${assignment._id}`} className="btn btn-primary btn-sm">
           View
         </Link>
       </div>
