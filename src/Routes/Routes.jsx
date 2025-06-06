@@ -9,6 +9,9 @@ import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/SignUp";
 import ErrorPage from "../Pages/ErrorPage";
+import Loading from "../Components/Loading";
+import PrivateLayout from "../Provider/PrivateLayout";
+import AssignmentDetails from "../Pages/AssignmentDetails";
 
 export const router = createBrowserRouter([
 
@@ -22,7 +25,17 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/assignments',
-                Component: Assignments
+                Component: Assignments,
+                loader: () => fetch('http://localhost:3000/assignments'),
+                hydrateFallbackElement: <Loading></Loading>
+            },
+            {
+                path:'/details/:id',
+                element:<PrivateLayout>
+                    <AssignmentDetails></AssignmentDetails>
+                </PrivateLayout>,
+                loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
+                hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: '/pending',
@@ -30,7 +43,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/create',
-                Component: CreateAssignment
+                element: <PrivateLayout>
+                    <CreateAssignment></CreateAssignment>
+                </PrivateLayout>
             },
             {
                 path: '/submitted',
