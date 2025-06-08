@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-const AssignmentCard = ({ assignment }) => {
+const AssignmentCard = ({ assignment, onDelete }) => {
   return (
     <div className="bg-base-100 shadow-lg rounded-lg p-4 flex flex-col items-start space-y-3 border hover:shadow-xl transition duration-300">
       <img
@@ -18,7 +18,12 @@ const AssignmentCard = ({ assignment }) => {
       </div>
 
       <div className="flex justify-between items-center w-full pt-4">
-        <button className="btn btn-outline btn-error btn-sm">Delete</button>
+        <button
+          onClick={() => onDelete(assignment._id)}
+          className="btn btn-outline btn-error btn-sm"
+        >
+          Delete
+        </button>
 
         <Link to={`/details/${assignment._id}`} className="btn btn-primary btn-sm">
           View
