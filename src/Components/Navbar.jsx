@@ -31,14 +31,28 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-6 font-medium text-secondary">
           <Link to="/">Home</Link>
           <Link to="/assignments">Assignments</Link>
-          {user && (
-            <>
-              <Link to="/pending">Pending</Link>
-              <Link to="/create">Create</Link>
-              <Link to="/submitted">Submitted</Link>
-              <button onClick={handleLogOut} className="btn btn-sm bg-primary text-white hover:bg-secondary">Log Out</button>
-            </>
-          )}
+      {user && (
+  <>
+    <Link to="/pending">Pending</Link>
+    <Link to="/create">Create</Link>
+    <Link to="/submitted">Submitted</Link>
+
+    {/* User info */}
+    <div className="flex items-center gap-2">
+      <img
+        src={user.photoURL || "https://i.ibb.co/8D0M3pM/default-avatar.png"}
+        alt="User"
+        className="w-8 h-8 rounded-full"
+      />
+      <span className="text-sm">{user.displayName || "User"}</span>
+    </div>
+
+    <button onClick={handleLogOut} className="btn btn-sm bg-primary text-white hover:bg-secondary">
+      Log Out
+    </button>
+  </>
+)}
+
           {!user && (
             <>
               <Link to="/auth/login">Log In</Link>
@@ -70,7 +84,21 @@ const Navbar = () => {
               <Link to="/pending" onClick={() => setIsMenuOpen(false)}>Pending</Link>
               <Link to="/create" onClick={() => setIsMenuOpen(false)}>Create</Link>
               <Link to="/submitted" onClick={() => setIsMenuOpen(false)}>Submitted</Link>
-              <button className="btn btn-sm w-full bg-primary text-white hover:bg-secondary">Log Out</button>
+{/* User Info */}
+{user.photoURL && (
+  <div className="flex items-center gap-2">
+    <img
+      src={user.photoURL}
+      alt="User"
+      className="w-8 h-8 rounded-full"
+    />
+    <span>{user.displayName}</span>
+  </div>
+)}
+
+<button onClick={handleLogOut} className="btn btn-sm w-full bg-primary text-white hover:bg-secondary">
+  Log Out
+</button>
             </>
           )}
           {!user && (

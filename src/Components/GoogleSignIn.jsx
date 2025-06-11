@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -9,17 +9,29 @@ const GoogleSignIn = () => {
 
     const handleGoogleLogIn = ()=>{
 
-        googleSignIn()
-        .then(result =>{
-            const user = result.user
-            setUser(user)
-            navigate('/')
-        })
-        .catch((error) =>{
+     googleSignIn()
+  .then(async (result) => {
+    const user = result.user;
+    setUser(user);
 
-            toast.error('Not successfull because of', error)
+ 
+    const res = await fetch("http://localhost:3000/jwt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", 
+      body: JSON.stringify({ email: user.email }),
+    });
 
-        })
+    if (res.ok) {
+      toast.success("Login successful");
+      navigate("/");
+    } else {
+      toast.error("Token issue");
+    }
+  })
+
 
     }
 

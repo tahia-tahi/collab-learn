@@ -1,14 +1,17 @@
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../Provider/AuthContext"; 
+import { AuthContext } from "../Provider/AuthContext";
 
 
 const SubmittedAssignment = () => {
-  const { user } = useContext(AuthContext); 
+  const { user } = useContext(AuthContext);
   const [mySubmissions, setMySubmissions] = useState([]);
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://3000/my-submissions/${user.email}`)
+      fetch(`http://localhost:3000/my-submissions/${user.email}`, {
+        credentials: 'include'
+      })
+
         .then((res) => res.json())
         .then((data) => setMySubmissions(data));
     }
