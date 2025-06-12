@@ -1,4 +1,6 @@
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./CustomDatePicker.css";
 import { toast } from "react-toastify";
 
 const CreateAssignment = () => {
@@ -12,21 +14,21 @@ const CreateAssignment = () => {
         const assignmentData = Object.fromEntries(formData.entries())
         console.log(assignmentData);
 
-        fetch('http://localhost:3000/assignments',{
-            method:'POST',
-            headers:{
-                'content-type' : 'application/json'
+        fetch('http://localhost:3000/assignments', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(assignmentData)
+            body: JSON.stringify(assignmentData)
 
         })
             .then((res) => res.json())
             .then((data) => {
-                if(data.insertedId){
+                if (data.insertedId) {
                     console.log(data);
                     toast.success('Assignment added successfully')
                 }
-                
+
             })
     }
 
@@ -81,9 +83,10 @@ const CreateAssignment = () => {
                 <div>
                     <label className="block mb-1 font-medium">Due Date</label>
                     <DatePicker
-
-                        className="w-full border p-2 rounded"
+                        className="w-full border border-gray-300 p-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        calendarClassName="custom-calendar"
                         dateFormat="yyyy-MM-dd"
+                        placeholderText="Select Due Date"
                     />
                 </div>
 
