@@ -1,6 +1,15 @@
 import { Link } from "react-router";
+import { MdOutlineEditNote } from "react-icons/md";
+import { IoMdEye } from "react-icons/io";
+
+
 
 const AssignmentCard = ({ assignment, onDelete }) => {
+
+
+
+
+
   return (
     <div className="bg-base-100 shadow-lg rounded-lg p-4 flex flex-col items-start space-y-3 border hover:shadow-xl transition duration-300">
       <img
@@ -25,9 +34,21 @@ const AssignmentCard = ({ assignment, onDelete }) => {
           Delete
         </button>
 
+        <div className="flex flex-col-reverse gap-2.5 ">
         <Link to={`/details/${assignment._id}`} className="btn btn-primary btn-sm">
-          View
+         <IoMdEye size={20}/>
+
         </Link>
+        <Link to={`/update/${assignment._id}`} className="btn btn-primary btn-sm">
+       <MdOutlineEditNote size={20} />
+
+        </Link>
+
+
+
+        </div>
+
+
       </div>
     </div>
   );

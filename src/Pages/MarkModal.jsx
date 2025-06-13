@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const MarkModal = ({ submission, onClose, onMarkSubmitted, userEmail }) => {
   const [marks, setMarks] = useState('');
@@ -19,7 +20,7 @@ const MarkModal = ({ submission, onClose, onMarkSubmitted, userEmail }) => {
     });
 
     if (res.ok) {
-      alert('Marked successfully');
+    toast.success('Marked successfully');
       onMarkSubmitted();
     } else {
       const error = await res.json();

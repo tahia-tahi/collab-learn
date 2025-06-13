@@ -11,14 +11,14 @@ const Footer = () => {
           <div className="flex items-center space-x-3">
             <img src={logo} alt="Logo" className="h-10" />
           </div>
-          <p className="text-sm text-base-content">
+          <p className="text-sm text-base-100">
             Empowering collaboration through smart assignments and real-time submissions.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-primary">Quick Links</h3>
-          <ul className="space-y-2 text-base-content">
+          <h3 className="text-lg font-semibold mb-3 text-base-100">Quick Links</h3>
+          <ul className="space-y-2 text-base-100">
             <li><Link to="/" className="hover:text-primary">Home</Link></li>
             <li><Link to="/assignments" className="hover:text-primary">Assignments</Link></li>
             <li><Link to="/create" className="hover:text-primary">Create Assignment</Link></li>
@@ -27,8 +27,8 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-primary">Follow Us</h3>
-          <div className="flex space-x-4 text-xl text-base-content">
+          <h3 className="text-lg font-semibold mb-3 text-base-100">Follow Us</h3>
+          <div className="flex space-x-4 text-xl text-base-100">
             <a href="#" className="hover:text-primary"><FaFacebookF /></a>
             <a href="#" className="hover:text-primary"><FaTwitter /></a>
             <a href="#" className="hover:text-primary"><FaInstagram /></a>
@@ -38,7 +38,7 @@ const Footer = () => {
       </div>
 
 
-      <div className="mt-10 border-t border-gray-700 pt-4 text-center text-sm text-base-content">
+      <div className="mt-10 border-t border-gray-700 pt-4 text-center text-sm text-base-100">
         &copy; {new Date().getFullYear()} Collab. All rights reserved.
       </div>
     </footer>

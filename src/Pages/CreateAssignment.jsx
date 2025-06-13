@@ -17,7 +17,6 @@ const CreateAssignment = () => {
     const thumbnail = form.thumbnail.value.trim();
     const difficulty = form.difficulty.value;
 
-    // ✅ Validation
     if (!title || !description || !marks || !thumbnail || !difficulty || !dueDate) {
       return toast.error("Please fill in all the fields");
     }
@@ -36,7 +35,7 @@ const CreateAssignment = () => {
       marks,
       thumbnail,
       difficulty,
-      dueDate: dueDate.toISOString().split("T")[0] // format: yyyy-mm-dd
+      dueDate: dueDate.toISOString().split("T")[0] 
     };
 
     fetch("http://localhost:3000/assignments", {
@@ -57,7 +56,7 @@ const CreateAssignment = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4 bg-white shadow rounded">
+    <div className="max-w-xl mx-auto p-4 bg-white shadow rounded my-20">
       <h2 className="text-2xl font-semibold mb-4">Create Assignment</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">

@@ -12,6 +12,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import Loading from "../Components/Loading";
 import PrivateLayout from "../Provider/PrivateLayout";
 import AssignmentDetails from "../Pages/AssignmentDetails";
+import UpdateAssignment from "../Pages/UpdateAssignment";
 
 export const router = createBrowserRouter([
 
@@ -30,11 +31,11 @@ export const router = createBrowserRouter([
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
-                path:'/details/:id',
-                element:<PrivateLayout>
+                path: '/details/:id',
+                element: <PrivateLayout>
                     <AssignmentDetails></AssignmentDetails>
                 </PrivateLayout>,
-                loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:3000/assignments/${params.id}`),
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
@@ -50,6 +51,13 @@ export const router = createBrowserRouter([
             {
                 path: '/submitted',
                 Component: SubmittedAssignment
+            },
+
+            {
+                path: "/update/:id",
+                element: <UpdateAssignment />,
+                loader: ({ params }) =>
+                    fetch(`http://localhost:3000/assignments/${params.id}`)
             },
             {
                 path: '/auth',

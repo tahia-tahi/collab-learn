@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate overflow-hidden mx-auto">
       {/* soft gradient background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-100 via-sky-50 to-white" />
 
@@ -36,7 +36,7 @@ const Banner = () => {
         </motion.div>
 
         {/* imagery */}
-        <div className="grid w-full max-w-md grid-cols-2 gap-4">
+        <div className="grid w-full max-w-md grid-cols-2 gap-4 mx-auto">
           {[
             { src: "https://i.ibb.co/rRQYDD2x/9.png", delay: 0 },
             { src: "https://i.ibb.co/N2Q5vRyy/10.png", delay: 0.15 },

@@ -36,7 +36,7 @@ const handleGiveMarkClick = (submission) => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto p-6 my-20">
       <h2 className="text-2xl font-bold mb-4">Pending Submissions</h2>
 
       {pendingAssignments.length === 0 ? (

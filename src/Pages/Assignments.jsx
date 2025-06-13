@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { useState } from "react";
 import AssignmentCard from "./../Components/AssignmentCard";
 import Swal from "sweetalert2";
@@ -7,6 +7,14 @@ const Assignments = () => {
   const loadedAssignments = useLoaderData();
   const [assignments, setAssignments] = useState(loadedAssignments);
   const [filter, setFilter] = useState("all");
+
+
+
+  const navigate = useNavigate();
+
+const handleUpdate = (id) => {
+  navigate(`/update-assignment/${id}`);
+};
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -49,7 +57,7 @@ const Assignments = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 my-20">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-xl font-bold">Assignments</h2>
         <select
@@ -71,6 +79,8 @@ const Assignments = () => {
               key={assignment._id}
               assignment={assignment}
               onDelete={handleDelete}
+                onUpdate={handleUpdate}
+
             />
           ))
         ) : (
