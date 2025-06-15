@@ -8,7 +8,7 @@ const SubmittedAssignment = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-submissions/${user.email}`, {
+      fetch(`https://collab-learn-server-pearl.vercel.app/my-submissions/${user.email}`, {
         credentials: 'include'
       })
 

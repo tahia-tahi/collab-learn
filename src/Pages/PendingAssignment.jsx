@@ -7,7 +7,7 @@ const PendingAssignment = ({ userEmail }) => {
   const [selectedSubmission, setSelectedSubmission] = useState(null);
 
   const fetchPendingAssignments = async () => {
-    const res = await fetch(`http://localhost:3000/submissions/pending?userEmail=${userEmail}`);
+    const res = await fetch(`https://collab-learn-server-pearl.vercel.app/submissions/pending?userEmail=${userEmail}`);
     const data = await res.json();
 
     const filtered = data.filter((item) => item.studentEmail !== userEmail);

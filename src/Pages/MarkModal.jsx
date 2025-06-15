@@ -8,7 +8,7 @@ const MarkModal = ({ submission, onClose, onMarkSubmitted, userEmail }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:3000/submissions/mark', {
+    const res = await fetch('https://collab-learn-server-pearl.vercel.app/submissions/mark', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

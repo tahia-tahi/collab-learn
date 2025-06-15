@@ -38,7 +38,7 @@ const CreateAssignment = () => {
       dueDate: dueDate.toISOString().split("T")[0] 
     };
 
-    fetch("http://localhost:3000/assignments", {
+    fetch("https://collab-learn-server-pearl.vercel.app/assignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",

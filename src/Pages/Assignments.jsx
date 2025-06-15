@@ -27,7 +27,7 @@ const handleUpdate = (id) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/assignments/${_id}`, {
+        fetch(`https://collab-learn-server-pearl.vercel.app/assignments/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -46,7 +46,7 @@ const handleUpdate = (id) => {
     const selected = e.target.value;
     setFilter(selected);
 
-    let url = "http://localhost:3000/assignments";
+    let url = "https://collab-learn-server-pearl.vercel.app/assignments";
     if (selected !== "all") {
       url += `?difficulty=${selected}`;
     }

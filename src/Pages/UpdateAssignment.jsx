@@ -14,7 +14,7 @@ const UpdateAssignment = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/assignments/${assignment._id}`, {
+    fetch(`https://collab-learn-server-pearl.vercel.app/assignments/${assignment._id}`, {
       method: "PATCH", 
       headers: {
         "Content-Type": "application/json",
