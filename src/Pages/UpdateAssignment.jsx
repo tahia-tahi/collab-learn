@@ -1,30 +1,41 @@
 import { useLoaderData, useNavigate } from "react-router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthContext";
 
 const UpdateAssignment = () => {
   const assignment = useLoaderData();
   const [formData, setFormData] = useState(assignment);
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleUpdate = (e) => {
+  const handleUpdate = (e, id, creatorEmail) => {
     e.preventDefault();
 
+    const userEmail = user?.email;
+    if (userEmail !== creatorEmail) {
+      Swal.fire("Unauthorized", "You are not authorized to update this assignment.", "error");
+      return;
+    }
+    navigate(`/update/${id}`);
+
+
     fetch(`https://collab-learn-server-pearl.vercel.app/assignments/${assignment._id}`, {
-      method: "PATCH", 
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log("Update response:", data);
-        if (data.modifiedCount > 0 || data.success) {
+        if (data.modifiedCount ) {
           Swal.fire("Updated!", "Assignment has been updated.", "success");
           navigate("/assignments");
         } else {

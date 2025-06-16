@@ -8,6 +8,11 @@ const MarkModal = ({ submission, onClose, onMarkSubmitted, userEmail }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (submission?.submitterEmail === userEmail) {
+  toast.error("You can't mark your own submission.");
+  return;
+}
+
     const res = await fetch('https://collab-learn-server-pearl.vercel.app/submissions/mark', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

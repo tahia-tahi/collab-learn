@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthContext";
 const SubmittedAssignment = () => {
   const { user } = useContext(AuthContext);
   const [mySubmissions, setMySubmissions] = useState([]);
+  
 
   useEffect(() => {
     if (user?.email) {
@@ -16,6 +17,8 @@ const SubmittedAssignment = () => {
         .then((data) => setMySubmissions(data));
     }
   }, [user?.email]);
+
+  
 
   return (
     <div className="max-w-6xl mx-auto my-10 p-4">
@@ -33,6 +36,7 @@ const SubmittedAssignment = () => {
           </thead>
           <tbody>
             {mySubmissions.map((item, index) => (
+              
               <tr key={index}>
                 <td>{item.assignmentTitle || "N/A"}</td>
                 <td>{item.status}</td>

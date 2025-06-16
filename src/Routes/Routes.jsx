@@ -40,7 +40,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/pending',
-                Component: PendingAssignment
+                element: <PrivateLayout>
+                    <PendingAssignment></PendingAssignment>
+                </PrivateLayout>
             },
             {
                 path: '/create',
@@ -50,12 +52,16 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/submitted',
-                Component: SubmittedAssignment
+                element: <PrivateLayout>
+                    <SubmittedAssignment></SubmittedAssignment>
+                </PrivateLayout>
             },
 
             {
                 path: "/update/:id",
-                element: <UpdateAssignment />,
+                element: <PrivateLayout>
+                    <UpdateAssignment />
+                </PrivateLayout>,
                 loader: ({ params }) =>
                     fetch(`https://collab-learn-server-pearl.vercel.app/assignments/${params.id}`)
             },

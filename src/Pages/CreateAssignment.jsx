@@ -40,6 +40,7 @@ const CreateAssignment = () => {
 
     fetch("https://collab-learn-server-pearl.vercel.app/assignments", {
       method: "POST",
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },

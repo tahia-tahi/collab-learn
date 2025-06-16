@@ -1,22 +1,42 @@
 import { useLoaderData, useNavigate } from "react-router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AssignmentCard from "./../Components/AssignmentCard";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthContext";
 
 const Assignments = () => {
   const loadedAssignments = useLoaderData();
   const [assignments, setAssignments] = useState(loadedAssignments);
   const [filter, setFilter] = useState("all");
+  const { user } = useContext(AuthContext)
+
 
 
 
   const navigate = useNavigate();
 
-const handleUpdate = (id) => {
-  navigate(`/update-assignment/${id}`);
+ const handleUpdate = (id, creatorEmail) => {
+  const userEmail = user?.email;
+
+  if (userEmail !== creatorEmail) {
+    Swal.fire("Unauthorized", "You are not authorized to update this assignment.", "error");
+    return;
+  }
+
+  navigate(`/update/${id}`);
 };
 
-  const handleDelete = (_id) => {
+
+
+
+  const handleDelete = (_id, creatorEmail) => {
+    const userEmail = user?.email; 
+
+    if (userEmail !== creatorEmail) {
+      Swal.fire("Unauthorized", "You are not authorized to delete this assignment.", "error");
+      return;
+    }
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -29,18 +49,21 @@ const handleUpdate = (id) => {
       if (result.isConfirmed) {
         fetch(`https://collab-learn-server-pearl.vercel.app/assignments/${_id}`, {
           method: "DELETE",
+          credentials: "include",
         })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Assignment has been deleted.", "success");
-              const remaining = assignments.filter(a => a._id !== _id);
+              const remaining = assignments.filter((a) => a._id !== _id);
               setAssignments(remaining);
+              navigate('/assignments')
             }
           });
       }
     });
   };
+
 
   const handleFilterChange = (e) => {
     const selected = e.target.value;
@@ -78,8 +101,8 @@ const handleUpdate = (id) => {
             <AssignmentCard
               key={assignment._id}
               assignment={assignment}
-              onDelete={handleDelete}
-                onUpdate={handleUpdate}
+              onDelete={() => handleDelete(assignment._id, assignment.creatorEmail)}
+              onUpdate={() => handleUpdate(assignment._id, assignment.creatorEmail)}
 
             />
           ))

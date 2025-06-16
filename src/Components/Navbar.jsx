@@ -1,5 +1,5 @@
 import logo from '../assets/collab-logo.png';
-import { Link } from 'react-router'; 
+import { Link } from 'react-router';
 import { IoIosSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
 import { useContext, useState } from 'react';
@@ -10,16 +10,21 @@ import ThemeToggle from './ThemeToggle';
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     logOut()
-    .then(()=>{
-        toast.success('Log Out Successful')
-    })
-    .catch((error)=>{
-        toast.error(error)
-    })
-  }
+      .then(() => {
+        toast.success('Log Out Successful');
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(prev => !prev);
+  };
 
   return (
     <nav className="bg-base-100 shadow-md px-4 py-3 md:px-8">
@@ -31,27 +36,50 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-6 font-medium text-secondary">
           <Link to="/">Home</Link>
           <Link to="/assignments">Assignments</Link>
-      {user && (
-  <>
-    <Link to="/pending">Pending</Link>
-    <Link to="/create">Create</Link>
-    <Link to="/submitted">Submitted</Link>
 
-    {/* User info */}
-    <div className="flex items-center gap-2">
-      <img
-        src={user.photoURL || "https://i.ibb.co/8D0M3pM/default-avatar.png"}
-        alt="User"
-        className="w-8 h-8 rounded-full"
-      />
-      <span className="text-sm">{user.displayName || "User"}</span>
-    </div>
+          {user && (
+            <>
+              <Link to="/pending">Pending</Link>
 
-    <button onClick={handleLogOut} className="btn btn-sm bg-primary text-white hover:bg-secondary">
-      Log Out
-    </button>
-  </>
-)}
+              {/* Profile Dropdown Toggle */}
+              <div className="relative">
+                <div
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={toggleDropdown}
+                >
+                  <img
+                    src={user.photoURL || "https://i.ibb.co/8D0M3pM/default-avatar.png"}
+                    alt="User"
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <span className="text-sm hidden md:inline-block group-hover:inline-block">
+                    {user.displayName || "User"}
+                  </span>
+                </div>
+
+                {/* Dropdown */}
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-md z-50 text-sm text-gray-800">
+                    <Link to="/create" className="block px-4 py-2 hover:bg-gray-100" onClick={() => setIsDropdownOpen(false)}>
+                      Create Assignment
+                    </Link>
+                    <Link to="/submitted" className="block px-4 py-2 hover:bg-gray-100" onClick={() => setIsDropdownOpen(false)}>
+                      My Attempted Assignments
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        handleLogOut();
+                      }}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
 
           {!user && (
             <>
@@ -61,9 +89,9 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Theme Toggle (Just UI - logic not added) */}
+        {/* Theme Toggle */}
         <div className="hidden md:flex items-center space-x-3 text-secondary text-xl">
-        <ThemeToggle></ThemeToggle>
+          <ThemeToggle />
         </div>
 
         {/* Mobile Hamburger */}
@@ -84,21 +112,19 @@ const Navbar = () => {
               <Link to="/pending" onClick={() => setIsMenuOpen(false)}>Pending</Link>
               <Link to="/create" onClick={() => setIsMenuOpen(false)}>Create</Link>
               <Link to="/submitted" onClick={() => setIsMenuOpen(false)}>Submitted</Link>
-{/* User Info */}
-{user.photoURL && (
-  <div className="flex items-center gap-2">
-    <img
-      src={user.photoURL}
-      alt="User"
-      className="w-8 h-8 rounded-full"
-    />
-    <span>{user.displayName}</span>
-  </div>
-)}
 
-<button onClick={handleLogOut} className="btn btn-sm w-full bg-primary text-white hover:bg-secondary">
-  Log Out
-</button>
+              <div className="flex items-center gap-2 mt-2">
+                <img
+                  src={user.photoURL || "https://i.ibb.co/8D0M3pM/default-avatar.png"}
+                  alt="User"
+                  className="w-8 h-8 rounded-full"
+                />
+                <span>{user.displayName || "User"}</span>
+              </div>
+
+              <button onClick={handleLogOut} className="btn btn-sm w-full bg-primary text-white hover:bg-secondary mt-2">
+                Log Out
+              </button>
             </>
           )}
           {!user && (

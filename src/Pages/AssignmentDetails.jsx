@@ -30,6 +30,8 @@ const AssignmentDetails = () => {
       quickNote: linkNote
     };
 
+
+
     console.log(submissionData);
 
     try {
@@ -41,6 +43,8 @@ const AssignmentDetails = () => {
         body: JSON.stringify(submissionData)
       })
       const data = await res.json();
+
+      
 
       if (data.insertedId) {
         toast.success('Successfully Submitted')
