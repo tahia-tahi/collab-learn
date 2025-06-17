@@ -1,18 +1,28 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../Provider/AuthContext';
 
-const MarkModal = ({ submission, onClose, onMarkSubmitted, userEmail }) => {
+const MarkModal = ({ submission, onClose, onMarkSubmitted,  }) => {
   const [marks, setMarks] = useState('');
   const [feedback, setFeedback] = useState('');
 
+  const { user } = useContext(AuthContext)
+
+
   const handleSubmit = async (e) => {
+
+    const userEmail = user?.email;
+     
     e.preventDefault();
-
+ 
     if (submission?.submitterEmail === userEmail) {
-  toast.error("You can't mark your own submission.");
-  return;
-}
+      toast.error("You can't mark your own submission.");
+    
+      return;
+    }
 
+
+    console.log(userEmail, submission.submitterEmail)
     const res = await fetch('https://collab-learn-server-pearl.vercel.app/submissions/mark', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -25,11 +35,11 @@ const MarkModal = ({ submission, onClose, onMarkSubmitted, userEmail }) => {
     });
 
     if (res.ok) {
-    toast.success('Marked successfully');
+      toast.success('Marked successfully');
       onMarkSubmitted();
     } else {
       const error = await res.json();
-      alert('Error: ' + error.message);
+      toast.error('Error: ' + error.message);
     }
   };
 
