@@ -1,12 +1,54 @@
-# React + Vite
+# 📚 Collab Learn
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A collaborative online group-study assignment platform designed to simplify assignment sharing, submission, and evaluation — all in one place.
 
-Currently, two official plugins are available:
+## 🔗 Live URL
+👉 (https://collab-learn-b1813.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 🎯 Project Purpose
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Collab Learn** enables students and educators to:
+- Create and manage assignments.
+- Submit and evaluate work.
+- Filter assignments based on difficulty.
+- Enable secure and role-based task handling.
+
+This platform is built with a modern tech stack to provide a smooth, interactive, and responsive experience for all users.
+
+---
+
+## 🚀 Key Features
+
+- 📝 **Assignment Creation** with difficulty level tagging (Easy, Medium, Hard)
+- 📂 **Filter Assignments** by difficulty level
+- ✅ **Marking System** for submitted assignments
+- 🔒 **Role-Based Access** – Only creators can update or delete their assignments
+- 🎉 **Toast Notifications** and stylish **alerts** with `React Toastify` and `SweetAlert2`
+- 📅 **Date Picker Integration** using `react-datepicker`
+- ⚙️ **Secure Authentication** via Firebase
+- 🌙 **Modern UI** with Tailwind CSS and Framer Motion animations
+- 🔄 **Protected Routes** using React Router
+- 🌐 **Deployed on Firebase**
+
+---
+
+## 🧩 NPM Packages Used
+
+| Package | Description |
+|--------|-------------|
+| **react** | Core library for building UI |
+| **react-dom** | DOM rendering for React |
+| **react-router** | Routing system for React |
+| **axios** | Promise-based HTTP client |
+| **firebase** | Authentication and hosting |
+| **tailwindcss** | Utility-first CSS framework |
+| **@tailwindcss/vite** | Tailwind plugin for Vite |
+| **framer-motion** | Animation library for React |
+| **react-icons** | Icon library for React |
+| **sweetalert2** | Beautiful alerts and confirmations |
+| **react-toastify** | Notification toasts |
+| **react-datepicker** | Date selection component |
+
+---
+
