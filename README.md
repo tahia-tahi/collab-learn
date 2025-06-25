@@ -18,6 +18,27 @@ This platform is built with a modern tech stack to provide a smooth, interactive
 
 ---
 
+## 🔗 Project Links
+
+- 🔴 [Live Website](https://collab-learn-b1813.web.app/)
+- 🟢 [Client-side Code](https://github.com/tahia-tahi/collab-learn)
+- ⚙️ [Server-side Code](https://github.com/tahia-tahi/collab-learn-server)
+
+---
+
+## 🔐 Backend API Overview (JWT Protected)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/jwt` | Generates JWT token upon login/signup |
+| `GET` | `/assignments` | Retrieves all assignments |
+| `POST` | `/assignments` | Creates a new assignment |
+| `PUT` | `/assignments/:id` | Updates an assignment (creator only) |
+| `DELETE` | `/assignments/:id` | Deletes an assignment (creator only) |
+| `POST` | `/submissions` | Submits assignment |
+| `GET` | `/submissions/:id` | Gets submissions for an assignment |
+| `PATCH` | `/submissions/:id` | Adds marks and feedback |
+
 🚀 Key Features
 📝 Assignment Creation with difficulty level tagging (Easy, Medium, Hard)
 
