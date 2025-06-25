@@ -85,3 +85,102 @@ This platform is built with a modern tech stack to provide a smooth, interactive
 
 ---
 
+## 💻 How to Run the Project Locally
+
+To run the full-stack **Collab Learn** project on your local machine, follow the steps below for both client and server setup.
+
+---
+
+### 🧾 Prerequisites
+
+Ensure you have these installed:
+
+- [Node.js](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+- [MongoDB](https://www.mongodb.com/) (or MongoDB Atlas)
+- A code editor like [VS Code](https://code.visualstudio.com/)
+
+---
+
+## 🖥 Client Setup (Frontend)
+
+1. **Clone the client repo:**
+
+```bash
+git clone https://github.com/tahia-tahi/collab-learn-client.git
+```
+
+2. **Navigate to the project folder:**
+
+```bash
+cd collab-learn-client
+```
+
+3. **Install dependencies:**
+
+```bash
+npm install
+```
+
+4. **Start the client app:**
+
+```bash
+npm run dev
+```
+
+✅ The React app will run on: `http://localhost:5173`
+
+---
+
+## ⚙️ Server Setup (Backend)
+
+1. **Clone the server repo:**
+
+```bash
+git clone https://github.com/tahia-tahi/collab-learn-server.git
+```
+
+2. **Navigate to the server folder:**
+
+```bash
+cd collab-learn-server
+```
+
+3. **Install dependencies:**
+
+```bash
+npm install
+```
+
+4. **Create a `.env` file in the root folder and add your environment variables:**
+
+```
+PORT=3000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+5. **Start the server:**
+
+```bash
+npm run start
+```
+
+✅ The server will run on: `http://localhost:3000`
+
+---
+
+## 🔐 JWT Authentication Notes
+
+- After login/signup, the server returns a JWT token.
+- All protected routes require this token in the `Authorization` header like:
+
+```
+Authorization: Bearer your_token_here
+```
+
+---
+
+Now you can use both client and server together locally. Happy coding! 💻🚀
+
+
