@@ -18,18 +18,30 @@ This platform is built with a modern tech stack to provide a smooth, interactive
 
 ---
 
-## 🚀 Key Features
+🚀 Key Features
+📝 Assignment Creation with difficulty level tagging (Easy, Medium, Hard)
 
-- 📝 **Assignment Creation** with difficulty level tagging (Easy, Medium, Hard)
-- 📂 **Filter Assignments** by difficulty level
-- ✅ **Marking System** for submitted assignments
-- 🔒 **Role-Based Access** – Only creators can update or delete their assignments
-- 🎉 **Toast Notifications** and stylish **alerts** with `React Toastify` and `SweetAlert2`
-- 📅 **Date Picker Integration** using `react-datepicker`
-- ⚙️ **Secure Authentication** via Firebase
-- 🌙 **Modern UI** with Tailwind CSS and Framer Motion animations
-- 🔄 **Protected Routes** using React Router
-- 🌐 **Deployed on Firebase**
+🧠 Full CRUD Functionality – Create, Read, Update, and Delete assignments (for authorized users)
+
+📂 Filter Assignments by difficulty level
+
+✅ Marking System for submitted assignments
+
+🔒 Role-Based Access – Only creators can update or delete their assignments
+
+🔐 JWT Authentication – Secure backend API access using JSON Web Tokens
+
+🎉 Toast Notifications and stylish alerts with React Toastify and SweetAlert2
+
+📅 Date Picker Integration using react-datepicker
+
+⚙️ Secure Authentication via Firebase
+
+🌙 Modern UI with Tailwind CSS and Framer Motion animations
+
+🔄 Protected Routes using React Router
+
+🌐 Deployed on Firebase
 
 ---
 
