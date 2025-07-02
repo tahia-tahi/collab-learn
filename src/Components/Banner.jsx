@@ -62,7 +62,8 @@ const Banner = () => {
           </p>
 
           <Link to={user ? "/assignments" : "/auth/signup"}>
-  <button className="btn btn-primary text-secondary hover:text-white btn-wide shadow-lg hover:shadow-xl transition">
+  <button className="btn btn-primary px-6 py-2 text-white hover:bg-secondary transition"
+>
     Get&nbsp;Started
   </button>
 </Link>

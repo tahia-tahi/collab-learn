@@ -1,11 +1,8 @@
 import logo from '../assets/collab-logo.png';
 import { Link } from 'react-router';
-import { IoIosSunny } from "react-icons/io";
-import { FaMoon } from "react-icons/fa";
 import { useContext, useState } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
 import { toast } from 'react-toastify';
-import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -14,25 +11,21 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {
-        toast.success('Log Out Successful');
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+      .then(() => toast.success('Log Out Successful'))
+      .catch((error) => toast.error(error.message));
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(prev => !prev);
-  };
+  const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
 
   return (
     <nav className="bg-primary shadow-md px-4 py-3 md:px-8 sticky top-0 z-50">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
+        {/* Logo */}
         <div className="flex items-center space-x-2">
           <img src={logo} alt="Collab Logo" className="h-10 w-auto" />
         </div>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6 font-medium text-secondary">
           <Link to="/">Home</Link>
           <Link to="/assignments">Assignments</Link>
@@ -41,30 +34,23 @@ const Navbar = () => {
             <>
               <Link to="/pending">Pending</Link>
 
-              {/* Profile Dropdown Toggle */}
               <div className="relative">
-                <div
-                  className="flex items-center gap-2 cursor-pointer"
-                  onClick={toggleDropdown}
-                >
+                <div className="flex items-center gap-2 cursor-pointer" onClick={toggleDropdown}>
                   <img
                     src={user.photoURL || "https://i.ibb.co/8D0M3pM/default-avatar.png"}
                     alt="User"
                     className="w-8 h-8 rounded-full"
                   />
-                  <span className="text-sm hidden md:inline-block group-hover:inline-block">
-                    {user.displayName || "User"}
-                  </span>
+                  <span className="text-sm hidden md:inline-block">{user.displayName || "User"}</span>
                 </div>
 
-                {/* Dropdown */}
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-md z-50 text-sm text-gray-800">
                     <Link to="/create" className="block px-4 py-2 hover:bg-gray-100" onClick={() => setIsDropdownOpen(false)}>
                       Create Assignment
                     </Link>
                     <Link to="/submitted" className="block px-4 py-2 hover:bg-gray-100" onClick={() => setIsDropdownOpen(false)}>
-                     Submitted Assignments
+                      Submitted Assignments
                     </Link>
                     <button
                       onClick={() => {
@@ -89,11 +75,6 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Theme Toggle */}
-        <div className="hidden md:flex items-center space-x-3 text-secondary text-xl">
-          <ThemeToggle />
-        </div>
-
         {/* Mobile Hamburger */}
         <div className="md:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-2xl text-secondary focus:outline-none">
@@ -107,6 +88,7 @@ const Navbar = () => {
         <div className="md:hidden mt-3 space-y-3 px-4 text-secondary font-medium">
           <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link to="/assignments" onClick={() => setIsMenuOpen(false)}>Assignments</Link>
+
           {user && (
             <>
               <Link to="/pending" onClick={() => setIsMenuOpen(false)}>Pending</Link>
@@ -127,16 +109,13 @@ const Navbar = () => {
               </button>
             </>
           )}
+
           {!user && (
             <>
               <Link to="/auth/login" onClick={() => setIsMenuOpen(false)}>Log In</Link>
               <Link to="/auth/signup" onClick={() => setIsMenuOpen(false)}>Sign Up</Link>
             </>
           )}
-          <div className="flex space-x-3 text-xl pt-2">
-            <IoIosSunny className="cursor-pointer" />
-            <FaMoon className="cursor-pointer" />
-          </div>
         </div>
       )}
     </nav>
