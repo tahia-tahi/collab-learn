@@ -1,64 +1,73 @@
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../Provider/AuthContext";
+
+const images = [
+  "https://i.ibb.co/rRQYDD2x/9.png",
+  "https://i.ibb.co/N2Q5vRyy/10.png",
+  "https://i.ibb.co/jP2KdLCY/11.png",
+];
 
 const Banner = () => {
-  return (
-    <section className="relative isolate overflow-hidden mx-auto">
-      {/* soft gradient background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-100 via-sky-50 to-white" />
+  const [index, setIndex] = useState(0);
+  const {user} = useContext(AuthContext)
 
-      <div className="mx-auto flex min-h-[80vh] max-w-7xl flex-col-reverse items-center gap-12 px-6 py-10 lg:flex-row lg:gap-20">
-        {/* text area */}
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative isolate overflow-hidden mx-auto min-h-[70vh]">
+      {/* background image */}
+      <div
+        className="absolute inset-0 -z-10 w-full h-full bg-cover bg-center transition-background duration-1000"
+        style={{ backgroundImage: `url(${images[index]})` }}
+      />
+
+      {/* stronger overlay for darker background */}
+      <div className="absolute inset-0 -z-5 bg-black/70" />
+
+      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center justify-center gap-12 px-6 py-10 lg:flex-row lg:gap-20">
+        {/* text */}
         <motion.div
-          className="max-w-lg text-center lg:text-left"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="max-w-lg text-center text-white"
+          initial={{ x: -40, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="mb-4 text-4xl font-extrabold leading-tight text-primary md:text-5xl">
-            Group-study, <br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-              smarter&nbsp;together
-            </span>
-            <span> 🚀</span>
+          <h1 className="mb-4 text-4xl font-extrabold leading-tight md:text-5xl">
+            <motion.span
+              className="bg-gradient-to-r from-blue-950 via-yellow-300 to-blue-900 bg-clip-text text-transparent bg-[length:200%_200%]"
+              animate={{
+                backgroundPositionX: ["0%", "100%", "0%"],
+                backgroundPositionY: ["0%", "100%", "0%"],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              Smarter Study Together
+            </motion.span>
           </h1>
 
-          <p className="mb-8 text-base text-gray-600 md:text-lg">
+          <p className="mb-8 text-base md:text-lg">
             Create, submit &amp; grade assignments with friends — all in one
             place. Experience the modern way of collaborative learning!
           </p>
 
-          <Link to="/auth/signup">
-            <button className="btn btn-primary btn-wide shadow-lg hover:shadow-xl transition">
-              Get&nbsp;Started
-            </button>
-          </Link>
-        </motion.div>
+          <Link to={user ? "/assignments" : "/auth/signup"}>
+  <button className="btn btn-primary text-secondary hover:text-white btn-wide shadow-lg hover:shadow-xl transition">
+    Get&nbsp;Started
+  </button>
+</Link>
 
-        {/* imagery */}
-        <div className="grid w-full max-w-md grid-cols-2 gap-4 mx-auto">
-          {[
-            { src: "https://i.ibb.co/rRQYDD2x/9.png", delay: 0 },
-            { src: "https://i.ibb.co/N2Q5vRyy/10.png", delay: 0.15 },
-            {
-              src: "https://i.ibb.co/jP2KdLCY/11.png",
-              delay: 0.3,
-              span: true,
-            },
-          ].map(({ src, delay, span }) => (
-            <motion.img
-              key={src}
-              src={src}
-              alt="students"
-              className={`rounded-xl object-cover shadow-md ${
-                span ? "col-span-2" : ""
-              } hover:-translate-y-1.5 transition`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay }}
-            />
-          ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

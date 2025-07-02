@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ShowHidePassword from '../Components/ShowHidePassword';
 import { AuthContext } from '../Provider/AuthContext';
 import GoogleSignIn from '../Components/GoogleSignIn';
@@ -13,7 +13,9 @@ const SignUp = () => {
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
 
     const handleRegister = (e) => {
@@ -63,7 +65,7 @@ const SignUp = () => {
 
         <div>
 
-            <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl my-20">
+            <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl my-20 ">
                 <form onSubmit={handleRegister} className="card-body">
                     <h1 className="text-3xl text-center text-accent font-bold">Sign Up now!</h1>
                     <fieldset className="fieldset">

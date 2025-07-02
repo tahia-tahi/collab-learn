@@ -2,10 +2,10 @@ import { FaQuestionCircle } from "react-icons/fa";
 
 const Faq = () => {
     return (
-        <section className="py-16 bg-base-200 text-base-content">
+        <section className="py-16 px-8 bg-base-200 text-base-content">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-primary mb-10 flex items-center justify-center gap-2">
-          <FaQuestionCircle className="text-4xl" />
+        <h2 className="text-4xl font-bold text-center text-secondary mb-10 flex items-center justify-center gap-2">
+          <FaQuestionCircle className="text-4xl " />
           Frequently Asked Questions
         </h2>
 

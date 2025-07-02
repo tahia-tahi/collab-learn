@@ -1,6 +1,6 @@
 import ShowHidePassword from '../Components/ShowHidePassword';
 import GoogleSignIn from '../Components/GoogleSignIn';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -11,7 +11,9 @@ const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
     const handleLogIn = (e) => {
         e.preventDefault()
 

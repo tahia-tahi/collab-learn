@@ -35,7 +35,7 @@ const AssignmentDetails = () => {
     console.log(submissionData);
 
     try {
-      const res = await fetch(`https://collab-learn-server-pearl.vercel.app/submission`, {
+      const res = await fetch(`http://localhost:3000/submission`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

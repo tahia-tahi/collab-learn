@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
             {
                 path: '/assignments',
                 Component: Assignments,
-                loader: () => fetch('https://collab-learn-server-pearl.vercel.app/assignments'),
+                loader: () => fetch('http://localhost:3000/assignments'),
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
                 element: <PrivateLayout>
                     <AssignmentDetails></AssignmentDetails>
                 </PrivateLayout>,
-                loader: ({ params }) => fetch(`https://collab-learn-server-pearl.vercel.app/assignments/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:3000/assignments/${params.id}`),
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
                     <UpdateAssignment />
                 </PrivateLayout>,
                 loader: ({ params }) =>
-                    fetch(`https://collab-learn-server-pearl.vercel.app/assignments/${params.id}`)
+                    fetch(`http://localhost:3000/assignments/${params.id}`)
             },
             {
                 path: '/auth',

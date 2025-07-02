@@ -15,7 +15,7 @@ const GoogleSignIn = () => {
     setUser(user);
 
  
-    const res = await fetch("https://collab-learn-server-pearl.vercel.app/jwt", {
+    const res = await fetch("http://localhost:3000/jwt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

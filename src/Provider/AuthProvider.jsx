@@ -42,7 +42,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
             if(currentUser?.email){
                 const userData = {email: currentUser.email}
-                axios.post('https://collab-learn-server-pearl.vercel.app/jwt', userData,  {
+                axios.post('http://localhost:3000/jwt', userData,  {
                     withCredentials:true
                 })
                 .then(res=>{
